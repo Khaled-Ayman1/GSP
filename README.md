@@ -28,7 +28,7 @@ This Python implementation of the GSP algorithm provides a simple and efficient 
 2. Navigate to the project directory:
 
     ```bash
-    cd gsp-algorithm
+    cd GSP
     ```
 
 3. Install the required dependencies using `pip`:
