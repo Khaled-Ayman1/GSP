@@ -1,7 +1,34 @@
 import pandas as pd
+import tkinter as tk
+from tkinter import ttk
 
 
-#preprocessing
+def display_dict_as_datagrid(dictionary):
+    root = tk.Tk()
+    root.geometry("1000x800")
+    root.attributes('-fullscreen', True)
+    # Create a Treeview widget
+    tree = ttk.Treeview(root)
+    tree["columns"] = ("value")
+
+    # Add columns to the Treeview
+    tree.heading("#0", text="Item")
+    tree.heading("value", text="Support")
+
+    # Insert dictionary items into the Treeview
+    for key, value in dictionary.items():
+        tree.insert("", tk.END, text=key, values=(value))
+
+    tree.pack()
+
+    # Create a button
+    close_button = ttk.Button(root, text="Next", command=root.destroy)
+    close_button.pack()
+
+    root.mainloop()
+
+
+# Preprocessing
 def preprocessing(df):
     # remove whitespaces from string columns
     for col in df.columns:
@@ -256,10 +283,12 @@ for dic in all_frequent_itemsets:
 cnt = 1
 for dic in all_frequent_itemsets :
     if len(dic) > 0:
-        print('Frequent itemset of size', cnt, 'is   :')
+        display_dict_as_datagrid(dic)
+        print('frequent itemset of size', cnt, 'is   :')
         print(dic)
         print('\n')
         cnt += 1
+
 
 print('______________________________________________________________________________\n')
 print(frequents)
